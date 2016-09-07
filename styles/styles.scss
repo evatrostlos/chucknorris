@@ -1,0 +1,197 @@
+@import 'https://fonts.googleapis.com/css?family=Fjalla+One|Raleway';
+
+// colors
+$bgc: #e4e4e2;
+$copyc: #222;
+$inputc: #666;
+$errorc: red;
+$borderc: #fff;
+$btnc: #333;
+
+// fonts
+$hlf: 'Fjalla One', sans-serif;
+$cf: 'Raleway', sans-serif;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  font-family: $cf;
+  color: $copyc;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  background-color: $bgc;
+}
+
+h1{
+  font-family: $hlf;
+  font-size: 2rem;
+}
+
+form{
+  max-width: 400px;
+    @media (max-width: 420px) {
+       width: 360px;
+  }
+}
+
+input{
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  border: 0;
+  padding: 0 20px;
+  font-size: 1rem;
+  color: $inputc;
+
+  @media (max-width: 420px) {
+    width: 360px;
+  }
+
+  &:focus{
+    border: 1px #333;
+    outline: 0;
+  }
+}
+
+.error{
+  border: 2px solid $errorc;
+  color: $errorc;
+
+  &:focus{
+    outline: 2px solid $errorc;
+  }
+}
+
+label{
+  display: inline-block;
+  text-align: left;
+  width: 400px;
+  margin: 20px 0;
+}
+
+.block{
+  text-align: center;
+}
+
+.btn {
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+  border: 0;
+  text-align: center;
+  font-size: 1.5rem;
+  color: $borderc;
+  background-color: $btnc;
+  animation: shiver 0.8s ease-in-out infinite;
+  animation-play-state: paused;
+  &:hover {
+    animation-play-state: running;
+  }
+  &:focus{
+    border: 0;
+    outline: 0;
+  }
+}
+
+.punched {
+  animation: punch 0.6s cubic-bezier(1, 0, .46, .63) forwards;
+  backface-visibility: visible;
+  transform-origin: 0 100% 0;
+}
+
+.errors{
+  list-style: none;
+  padding: 0;
+
+  li{
+    margin-bottom: 10px;
+    color: $errorc;
+  }
+}
+
+// success popup
+.success{
+  position: absolute;
+  width: 400px;
+  min-height: 400px;
+  padding: 20px;
+  background-color: $bgc;
+  border: 5px solid $borderc;
+  transform: scale(0);
+  animation: scale 1s forwards;
+
+  @media (max-width: 420px) {
+    width: 360px;
+  }
+
+  .btn{
+    line-height: 50px;
+    margin: auto;
+    margin-top: 40px;
+  }
+
+  a{
+    color: $borderc;
+    text-decoration: none;
+  }
+
+  h2{
+    margin-bottom: 40px;
+    font-family: $hlf;
+  }
+}
+
+// animations
+@keyframes shiver {
+  10%,
+  100% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(1px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+
+@keyframes punch {
+  from {
+    transform: perspective(600px);
+  }
+  to {
+    transform: perspective(800px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes scale {
+  from{
+    transform: scale(0);
+    display: block;
+  }
+  to {
+    transform: scale(1);
+    display: block;
+  }
+}
